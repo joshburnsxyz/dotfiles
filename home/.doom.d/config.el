@@ -54,9 +54,6 @@
 ;; they are implemented.
 
 ;; RSS Feeds
-(require 'elfeed-goodies)
-(elfeed-goodies/setup)
-(setq elfeed-goodies/entry-pane-size 0.5)
 (setq elfeed-feeds '(("https://www.reddit.com/r/linux.rss" reddit linux)
                     ("https://www.reddit.com/r/commandline.rss" reddit linux)
                     ("https://www.reddit.com/r/emacs.rss" reddit linux)
@@ -73,8 +70,3 @@
                     ("https://betanews.com/feed" betanews linux)
                     ("http://lxer.com/module/newswire/headlines.rss" lxer linux)
                     ("https://distrowatch.com/news/dwd.xml" distrowatch linux)))
-
-;; Org Capture templates
-(setq org-capture-templates
-  '(("t" "Todo" entry (file+headline "~/Documents/org/master_todos.org" "Tasks")
-     "* TODO %?\n %i\n %a))
