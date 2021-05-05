@@ -52,3 +52,29 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; RSS Feeds
+(require 'elfeed-goodies)
+(elfeed-goodies/setup)
+(setq elfeed-goodies/entry-pane-size 0.5)
+(setq elfeed-feeds '(("https://www.reddit.com/r/linux.rss" reddit linux)
+                    ("https://www.reddit.com/r/commandline.rss" reddit linux)
+                    ("https://www.reddit.com/r/emacs.rss" reddit linux)
+                    ("https://www.reddit.com/r/australia.rss" reddit news)
+                    ("https://www.gamingonlinux.com/article_rss.php" gaming linux)
+                    ("https://hackaday.com/blog/feed/" hackaday linux)
+                    ("https://opensource.com/feed" opensource linux)
+                    ("https://linux.softpedia.com/backend.xml" softpedia linux)
+                    ("https://itsfoss.com/feed/" itsfoss linux)
+                    ("https://www.zdnet.com/topic/linux/rss.xml" zdnet linux)
+                    ("https://www.phoronix.com/rss.php" phoronix linux)
+                    ("https://www.computerworld.com/index.rss" computerworld linux)
+                    ("https://www.networkworld.com/category/linux/index.rss" networkworld linux)
+                    ("https://betanews.com/feed" betanews linux)
+                    ("http://lxer.com/module/newswire/headlines.rss" lxer linux)
+                    ("https://distrowatch.com/news/dwd.xml" distrowatch linux)))
+
+;; Org Capture templates
+(setq org-capture-templates
+  '(("t" "Todo" entry (file+headline "~/Documents/org/master_todos.org" "Tasks")
+     "* TODO %?\n %i\n %a))
