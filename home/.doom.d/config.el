@@ -73,3 +73,8 @@
                     ("https://betanews.com/feed" betanews linux)
                     ("http://lxer.com/module/newswire/headlines.rss" lxer linux)
                     ("https://distrowatch.com/news/dwd.xml" distrowatch linux)))
+
+;; Org Capture templates
+(setq org-capture-templates
+  '(("t" "Todo" entry (file+headline "~/Documents/org/master_todos.org" "Tasks")
+     "* TODO %?\n %i\n %a))
