@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # Install for $HOME
-mkdir -pv ~/.config
-for entry in `ls .config`; do
+for entry in `ls $HOME`; do
     linkTarget="~/$entry"
     echo $linkTarget
     ln -s "$(pwd)/home/$entry" "$linkTarget"
