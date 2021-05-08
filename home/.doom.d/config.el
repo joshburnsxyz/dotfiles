@@ -73,4 +73,7 @@
                     ("https://betanews.com/feed" betanews linux)
                     ("http://lxer.com/module/newswire/headlines.rss" lxer linux)
                     ("https://distrowatch.com/news/dwd.xml" distrowatch linux)
-                    ("https://suckless.org/atom.xml" linux)))
+                    ("https://suckless.org/atom.xml" linux)
+                    ("https://lukesmith.xyz/rss.xml" linux lukesmith)
+                    ("https://notrelated.xyz/rss" lukesmith)
+                    ("https://lukesmith.xyz/videos" lukesmith linux)))
