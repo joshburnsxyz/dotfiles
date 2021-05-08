@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! helm-org-rifle)
+(package! elfeed-goodies)

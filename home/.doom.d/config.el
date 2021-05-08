@@ -54,6 +54,9 @@
 ;; they are implemented.
 
 ;; RSS Feeds
+(require 'elfeed-goodies)
+(elfeed-goodies/setup)
+(setq elfeed-goodies/entry-pane-size 0.5)
 (setq elfeed-feeds '(("https://www.reddit.com/r/linux.rss" reddit linux)
                     ("https://www.reddit.com/r/commandline.rss" reddit linux)
                     ("https://www.reddit.com/r/emacs.rss" reddit linux)
