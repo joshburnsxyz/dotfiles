@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import os
+rootdir = "~/code"
+
+###########
+# Helpers #
+###########
+
+repoList = []
+
+def list_sub_dirs():
+  for file in os.listdir(rootdir):
+    d = os.path.join(rootdir, file)
+    if os.path.isdir(d):
+      print(d)
+      repoList.append(d)
+
+def pull_and_push_repo(dir):
+  retval = os.getcwd()
+  os.chdir(dir)
+  os.system("git pull")
+  os.system("git push")
+  os.chdir(retval)
+
+###############
+# End Helpers #
+###############
+
+list_sub_dirs()
+for x in repoList:
+  pull_and_push_repo(x)
