@@ -4,7 +4,7 @@ import os
 
 # Specify directory where all git repos
 # live on my system.
-rootdir = "~/code"
+rootdir = "/home/josh/code"
 
 ###########
 # Helpers #
