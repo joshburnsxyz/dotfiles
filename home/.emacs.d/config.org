@@ -91,6 +91,9 @@ This section is simple bits and pieces that make emacs nicer.
   :ensure t)
 (yas-reload-all)
 (yas-global-mode 1)
+
+(global-set-key (kbd "<tab>") 'yas-maybe-expand)
+(global-set-key (kbd "TAB") 'yas-maybe-expand)
 #+end_src
 * Projectile
 #+begin_src elisp
