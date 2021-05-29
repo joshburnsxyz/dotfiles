@@ -2,4 +2,6 @@ elpa
 auto-save-list
 config.el
 #*
+*#*#
 .#*
+projectile-bookmarks.eld
