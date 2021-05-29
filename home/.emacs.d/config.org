@@ -26,6 +26,10 @@ This section is simple bits and pieces that make emacs nicer.
 #+begin_src elisp
 (winner-mode 1)
 #+end_src
+** Rebind M-x
+#+begin_src elisp
+(global-set-key (kbd "M-x") 'helm-M-x)
+#+end_src
 * Org Mode
 ** Basic Org settings
 #+begin_src elisp
@@ -74,7 +78,21 @@ This section is simple bits and pieces that make emacs nicer.
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 #+end_src
+** All the icons font
+#+begin_src elisp
+(use-package all-the-icons
+  :ensure t)
+#+end_src
 * Snippets
+#+begin_src elisp
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-snippet-dirs
+	'("~/.emacs.d/snippets"))
+
+(yas-global-mode 1)
+#+end_src
 * Projectile
 #+begin_src elisp
 (use-package projectile
@@ -92,6 +110,45 @@ This section is simple bits and pieces that make emacs nicer.
   :ensure t
   :config
   (helm-projectile-on))
+#+end_src
+* Neotree
+#+begin_src elisp
+(defcustom neo-window-width 25
+"*specifies width of neotree window."
+  :type 'integer
+  :group 'neotree)
+
+(use-package neotree
+  :ensure t
+  :config
+  (setq neo-smart-open t
+	neo-window-width 30
+	neo-theme (if(display-graphic-p) 'icons 'arrow)
+	inhibit-compacting-font-caches t
+	projectile-switch-project-action 'neotree-projectile-action)
+  (add-hook 'neo-after-create-hoook
+	    #'(lambda (_)
+		(width-current-buffer (get-buffer neo-buffer-name)
+				      (setq truncate-lines t)
+				      (setq word-wrap nil)
+				      (make-local-variable 'auto-hscroll-mode)
+				      (setq auto-hscroll-mode nil)))))
+(setq-default neo-show-hidden-files t)
+#+end_src
+
+Setup some overrides for neotree to work better with evil mode
+#+begin_src elisp
+(add-hook 'neotree-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-quick-look)
+            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "g") 'neotree-refresh)
+            (define-key evil-normal-state-local-map (kbd "n") 'neotree-next-line)
+            (define-key evil-normal-state-local-map (kbd "p") 'neotree-previous-line)
+            (define-key evil-normal-state-local-map (kbd "A") 'neotree-stretch-toggle)
+            (define-key evil-normal-state-local-map (kbd "H") 'neotree-hidden-file-toggle)))
 #+end_src
 * Evil Mode
 ** Evil mode + Evil Collection
@@ -123,18 +180,27 @@ This section is simple bits and pieces that make emacs nicer.
    
 #+begin_src elisp
 (nvmap :prefix "SPC"
-  ;; Window splits
-  "w c" '(evil-window-delete)
-  "w n" '(evil-window-new)
-  "w s" '(evil-window-split)
-  "w v" '(evil-window-vsplit)
+  ;; Window split
+  "w c" 'evil-window-delete
+  "w n" 'evil-window-new
+  "w s" 'evil-window-split
+  "w v" 'evil-window-vsplit
   ;; Window Motion
-  "w h" '(evil-window-left)
-  "w j" '(evil-window-down)
-  "w k" '(evil-window-up)
-  "w l" '(evil-window-right)
+  "w h" 'evil-window-left
+  "w j" 'evil-window-down
+  "w k" 'evil-window-up
+  "w l" 'evil-window-right
   ;; winner mode
-  "w <left>" '(winner-undo)
-  "w <right>" '(winner-redo)
-  )
+  "w <left>" 'winner-undo
+  "w <right>" 'winner-redo
+  ;; Projectile
+  "p p" 'helm-projectile-switch-project
+  "p f" 'helm-projectile-find-file
+  "p g" 'helm-projectile-grep
+  ;; Files / Directories
+  "f f" 'helm-find-files
+  "f d" 'helm-find
+  ;; Neotree
+  "t t" 'neotree-toggle
+  "t d" 'neotree-dir)
 #+end_src
