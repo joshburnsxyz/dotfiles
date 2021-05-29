@@ -16,13 +16,91 @@
    #+begin_src elisp
      (setq x-select-enable-clipboard t)
    #+end_src
-
-* Package Management
-** Setup Package.el to use MELPA
+** Theme
    #+begin_src elisp
-     (require 'package)
-     (add-to-list 'package-archives
-		  '("melpa" > "https://melpa.org/packages/"))
-     (package-refresh-contents)
-     (package-initialize)
+     (use-package gruvbox-theme
+       :ensure t)
+     (load-theme 'gruvbox-dark-soft t)
+   #+end_src
+* Org Mode
+** Basic Org settings
+   #+begin_src elisp
+     (add-hook 'org-mode-hook 'org-indent-mode)
+     (setq org-directory "~/Documents/org"
+	   org-agenda-files '("~/Documents/org/agenda.org")
+	   org-default-notes-file (expand-file-name "notes.org" org-directory))
+     (setq org-src-preserve-indentation nil
+	   org-src-tab-acts-natively t
+	   org-edit-src-content-indentation 0)
+   #+end_src
+** Org bullets
+   #+begin_src elisp
+     (use-package org-bullets
+       :ensure t)
+     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+   #+end_src
+
+** Source Block Highlighting
+   #+begin_src elisp
+     (setq org-src-fontify-natively t
+	   org-src-tab-acts-natively t
+	   org-confirm-babel-evaluate nil
+	   org-edit-src-content-indentation 0)
+   #+end_src
+
+** Cleanup M-RET Behaviour
+#+begin_src elisp
+(setq org-blank-before-new-entry (quote ((heading . nil)
+					 (plain-list-item . nil))))
+#+end_src
+* Font Settings
+#+begin_src elisp
+(set-face-attribute 'default nil
+:font "Fira Code"
+:height 110
+:weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+:font "Fira Code"
+:height 110
+:weight 'medium)
+#+end_src
+** Zoom in/out
+#+begin_src elisp
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+#+end_src
+* Snippets
+* Projectile
+* Helm
+* Evil Mode
+** Evil mode + Evil Collection
+   #+begin_src elisp
+     (use-package evil
+       :ensure t
+       :init      ;; tweak evil's configuration before loading it
+       (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+       (setq evil-want-keybinding nil)
+       (setq evil-vsplit-window-right t)
+       (setq evil-split-window-below t)
+       (evil-mode))
+     (use-package evil-collection
+       :ensure t
+       :after evil
+       :config
+       (setq evil-collection-mode-list '(dashboard dired ibuffer))
+       (evil-collection-init))
+     (use-package evil-tutor
+       :ensure t)
+   #+end_src
+** General.el keybindings
+   #+begin_src elisp
+     (use-package general
+       :ensure t
+       :config
+       (general-evil-setup t))
+   #+end_src
+   
+   #+begin_src elisp
+;; Setup main keymap here..
    #+end_src
