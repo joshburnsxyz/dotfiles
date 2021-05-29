@@ -30,6 +30,23 @@ This section is simple bits and pieces that make emacs nicer.
 #+begin_src elisp
 (global-set-key (kbd "M-x") 'helm-M-x)
 #+end_src
+* Custom Functions
+** Open =config.org=
+#+begin_src elisp
+(defun my/open-config-org-file ()
+  "Open this file in emacs for editing"
+  (interactive)
+  (find-file "~/.emacs.d/config.org"))
+#+end_src
+** Reindent Whole Buffer (basic bitch formatting)
+#+begin_src elisp
+(defun my/reindent-whole-buffer ()
+  "Mark whole buffer, then indent the region. This is what i refere to as 'basic bitch formatting'"
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+#+end_src
+
 * Org Mode
 ** Basic Org settings
 #+begin_src elisp
@@ -117,7 +134,7 @@ This section is simple bits and pieces that make emacs nicer.
 ** Install Neotree
 #+begin_src elisp
 (defcustom neo-window-width 25
-"*specifies width of neotree window."
+  "*specifies width of neotree window."
   :type 'integer
   :group 'neotree)
 
@@ -158,7 +175,7 @@ Setup some overrides for neotree to work better with evil mode
 ** Install magit
 #+begin_src elisp
 (use-package magit
-    :ensure t)
+  :ensure t)
 #+end_src
 * Evil Mode
 ** Evil mode + Evil Collection
@@ -210,12 +227,15 @@ Setup some overrides for neotree to work better with evil mode
   ;; Files / Directories
   "f f" 'helm-find-files
   "f d" 'helm-find
-  "f c" '(find-file "~/.emacs.d/config.org")
+  "f c" 'my/open-config-org-file
   ;; Neotree
   "t t" 'neotree-toggle
   "t d" 'neotree-dir
   ;; Magit
-  "g g" 'magit-dispatch-popup)
+  "g g" 'magit-status
+  "g p" 'magit-dispatch
+  ;; Misc.
+  "x i" 'my/reindent-whole-buffer)
 #+end_src
 
 
