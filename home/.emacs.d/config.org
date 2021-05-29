@@ -1,18 +1,28 @@
 * QoL settings
-This section is simple bits and pieces that make emacs nicer.
+  This section is simple bits and pieces that make emacs nicer.
 ** Enable line numbers
-#+begin_src elisp
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-line-numbers-mode)
-#+end_src
+   #+begin_src elisp
+     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+     (add-hook 'text-mode-hook 'display-line-numbers-mode)
+   #+end_src
 ** Disable Startup screen and GUI elements
-#+begin_src elisp
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-#+end_src
+   #+begin_src elisp
+     (setq inhibit-startup-message t)
+     (tool-bar-mode -1)
+     (menu-bar-mode -1)
+     (scroll-bar-mode -1)
+   #+end_src
 ** Enable copy and paste
-#+begin_src elisp
-(setq x-select-enable-clipboard t)
-#+end_src
+   #+begin_src elisp
+     (setq x-select-enable-clipboard t)
+   #+end_src
+
+* Package Management
+** Setup Package.el to use MELPA
+   #+begin_src elisp
+     (require 'package)
+     (add-to-list 'package-archives
+		  '("melpa" > "https://melpa.org/packages/"))
+     (package-refresh-contents)
+     (package-initialize)
+   #+end_src
