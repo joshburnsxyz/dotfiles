@@ -86,11 +86,10 @@ This section is simple bits and pieces that make emacs nicer.
 * Snippets
 #+begin_src elisp
 (use-package yasnippet
-  :ensure t
-  :config
-  (setq yas-snippet-dirs
-	'("~/.emacs.d/snippets"))
-
+  :ensure t)
+(use-package yasnippet-snippets
+  :ensure t)
+(yas-reload-all)
 (yas-global-mode 1)
 #+end_src
 * Projectile
@@ -171,6 +170,7 @@ Setup some overrides for neotree to work better with evil mode
   :ensure t)
 #+end_src
 ** General.el keybindings
+SCHEDULED: <2021-05-29 Sat>
 #+begin_src elisp
 (use-package general
   :ensure t
@@ -204,3 +204,5 @@ Setup some overrides for neotree to work better with evil mode
   "t t" 'neotree-toggle
   "t d" 'neotree-dir)
 #+end_src
+
+
