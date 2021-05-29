@@ -92,8 +92,8 @@ This section is simple bits and pieces that make emacs nicer.
 (yas-reload-all)
 (yas-global-mode 1)
 
-(global-set-key (kbd "<tab>") 'yas-maybe-expand)
-(global-set-key (kbd "TAB") 'yas-maybe-expand)
+(global-set-key (kbd "C-<tab>") 'yas-maybe-expand)
+(global-set-key (kbd "C-TAB") 'yas-maybe-expand)
 #+end_src
 * Projectile
 #+begin_src elisp
@@ -114,6 +114,7 @@ This section is simple bits and pieces that make emacs nicer.
   (helm-projectile-on))
 #+end_src
 * Neotree
+** Install Neotree
 #+begin_src elisp
 (defcustom neo-window-width 25
 "*specifies width of neotree window."
@@ -138,6 +139,7 @@ This section is simple bits and pieces that make emacs nicer.
 (setq-default neo-show-hidden-files t)
 #+end_src
 
+** Evil compatibility for neotree
 Setup some overrides for neotree to work better with evil mode
 #+begin_src elisp
 (add-hook 'neotree-mode-hook
@@ -151,6 +153,12 @@ Setup some overrides for neotree to work better with evil mode
             (define-key evil-normal-state-local-map (kbd "p") 'neotree-previous-line)
             (define-key evil-normal-state-local-map (kbd "A") 'neotree-stretch-toggle)
             (define-key evil-normal-state-local-map (kbd "H") 'neotree-hidden-file-toggle)))
+#+end_src
+* Magit
+** Install magit
+#+begin_src elisp
+(use-package magit
+    :ensure t)
 #+end_src
 * Evil Mode
 ** Evil mode + Evil Collection
@@ -173,7 +181,6 @@ Setup some overrides for neotree to work better with evil mode
   :ensure t)
 #+end_src
 ** General.el keybindings
-SCHEDULED: <2021-05-29 Sat>
 #+begin_src elisp
 (use-package general
   :ensure t
@@ -205,7 +212,9 @@ SCHEDULED: <2021-05-29 Sat>
   "f d" 'helm-find
   ;; Neotree
   "t t" 'neotree-toggle
-  "t d" 'neotree-dir)
+  "t d" 'neotree-dir
+  ;; Magit
+  "g g" 'magit-dispatch-popup)
 #+end_src
 
 
