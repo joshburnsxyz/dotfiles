@@ -1,52 +1,56 @@
 * QoL settings
-  This section is simple bits and pieces that make emacs nicer.
+This section is simple bits and pieces that make emacs nicer.
 ** Enable line numbers
-   #+begin_src elisp
-     (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-     (add-hook 'text-mode-hook 'display-line-numbers-mode)
-   #+end_src
+#+begin_src elisp
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
+#+end_src
 ** Disable Startup screen and GUI elements
-   #+begin_src elisp
-     (setq inhibit-startup-message t)
-     (tool-bar-mode -1)
-     (menu-bar-mode -1)
-     (scroll-bar-mode -1)
-   #+end_src
+#+begin_src elisp
+(setq inhibit-startup-message t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
 ** Enable copy and paste
-   #+begin_src elisp
-     (setq x-select-enable-clipboard t)
-   #+end_src
+#+begin_src elisp
+(setq x-select-enable-clipboard t)
+#+end_src
 ** Theme
-   #+begin_src elisp
-     (use-package gruvbox-theme
-       :ensure t)
-     (load-theme 'gruvbox-dark-soft t)
-   #+end_src
+#+begin_src elisp
+(use-package gruvbox-theme
+  :ensure t)
+(load-theme 'gruvbox-dark-soft t)
+#+end_src
+** Enable =winner-mode=
+#+begin_src elisp
+(winner-mode 1)
+#+end_src
 * Org Mode
 ** Basic Org settings
-   #+begin_src elisp
-     (add-hook 'org-mode-hook 'org-indent-mode)
-     (setq org-directory "~/Documents/org"
-	   org-agenda-files '("~/Documents/org/agenda.org")
-	   org-default-notes-file (expand-file-name "notes.org" org-directory))
-     (setq org-src-preserve-indentation nil
-	   org-src-tab-acts-natively t
-	   org-edit-src-content-indentation 0)
-   #+end_src
+#+begin_src elisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+(setq org-directory "~/Documents/org"
+      org-agenda-files '("~/Documents/org/agenda.org")
+      org-default-notes-file (expand-file-name "notes.org" org-directory))
+(setq org-src-preserve-indentation nil
+      org-src-tab-acts-natively t
+      org-edit-src-content-indentation 0)
+#+end_src
 ** Org bullets
-   #+begin_src elisp
-     (use-package org-bullets
-       :ensure t)
-     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-   #+end_src
+#+begin_src elisp
+(use-package org-bullets
+  :ensure t)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
 
 ** Source Block Highlighting
-   #+begin_src elisp
-     (setq org-src-fontify-natively t
-	   org-src-tab-acts-natively t
-	   org-confirm-babel-evaluate nil
-	   org-edit-src-content-indentation 0)
-   #+end_src
+#+begin_src elisp
+(setq org-src-fontify-natively t
+      org-src-tab-acts-natively t
+      org-confirm-babel-evaluate nil
+      org-edit-src-content-indentation 0)
+#+end_src
 
 ** Cleanup M-RET Behaviour
 #+begin_src elisp
@@ -56,13 +60,13 @@
 * Font Settings
 #+begin_src elisp
 (set-face-attribute 'default nil
-:font "Fira Code"
-:height 110
-:weight 'medium)
+		    :font "Fira Code"
+		    :height 110
+		    :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-:font "Fira Code"
-:height 110
-:weight 'medium)
+		    :font "Fira Code"
+		    :height 110
+		    :weight 'medium)
 #+end_src
 ** Zoom in/out
 #+begin_src elisp
@@ -72,35 +76,65 @@
 #+end_src
 * Snippets
 * Projectile
+#+begin_src elisp
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode 1))
+#+end_src
 * Helm
+#+begin_src elisp
+(use-package helm
+  :ensure t
+  :config
+  (helm-mode 1))
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
+#+end_src
 * Evil Mode
 ** Evil mode + Evil Collection
-   #+begin_src elisp
-     (use-package evil
-       :ensure t
-       :init      ;; tweak evil's configuration before loading it
-       (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-       (setq evil-want-keybinding nil)
-       (setq evil-vsplit-window-right t)
-       (setq evil-split-window-below t)
-       (evil-mode))
-     (use-package evil-collection
-       :ensure t
-       :after evil
-       :config
-       (setq evil-collection-mode-list '(dashboard dired ibuffer))
-       (evil-collection-init))
-     (use-package evil-tutor
-       :ensure t)
-   #+end_src
+#+begin_src elisp
+(use-package evil
+  :ensure t
+  :init      ;; tweak evil's configuration before loading it
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  (evil-mode))
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config
+  (setq evil-collection-mode-list '(dashboard dired ibuffer))
+  (evil-collection-init))
+(use-package evil-tutor
+  :ensure t)
+#+end_src
 ** General.el keybindings
-   #+begin_src elisp
-     (use-package general
-       :ensure t
-       :config
-       (general-evil-setup t))
-   #+end_src
+#+begin_src elisp
+(use-package general
+  :ensure t
+  :config
+  (general-evil-setup t))
+#+end_src
    
-   #+begin_src elisp
-;; Setup main keymap here..
-   #+end_src
+#+begin_src elisp
+(nvmap :prefix "SPC"
+  ;; Window splits
+  "w c" '(evil-window-delete)
+  "w n" '(evil-window-new)
+  "w s" '(evil-window-split)
+  "w v" '(evil-window-vsplit)
+  ;; Window Motion
+  "w h" '(evil-window-left)
+  "w j" '(evil-window-down)
+  "w k" '(evil-window-up)
+  "w l" '(evil-window-right)
+  ;; winner mode
+  "w <left>" '(winner-undo)
+  "w <right>" '(winner-redo)
+  )
+#+end_src
