@@ -37,8 +37,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(helm-minibuffer-history-key "M-p")
- '(package-selected-packages '(yaml-mode use-package)))
+ '(package-selected-packages '(doom-themes go-mode markdown-mode yaml-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

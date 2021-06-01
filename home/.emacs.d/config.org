@@ -1,4 +1,4 @@
-* QoL settings
+* Initialization Settings
 This section is simple bits and pieces that make emacs nicer.
 ** Enable line numbers
 #+begin_src elisp
@@ -16,12 +16,65 @@ This section is simple bits and pieces that make emacs nicer.
 #+begin_src elisp
 (setq x-select-enable-clipboard t)
 #+end_src
-** Theme
+** Font Settings
 #+begin_src elisp
-(use-package gruvbox-theme
-  :ensure t)
-(load-theme 'gruvbox-dark-soft t)
+(set-face-attribute 'default nil
+                    :font "Fira Code"
+                    :height 110
+                    :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+                    :font "Fira Code"
+                    :height 110
+                    :weight 'medium)
+(set-face-attribute 'variable-pitch nil
+                    :font "Fira Code"
+                    :height 110
+                    :weight 'medium)
 #+end_src
+*** Zoom in/out
+#+begin_src elisp
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+#+end_src
+*** All the icons font
+#+begin_src elisp
+(use-package all-the-icons
+  :ensure t)
+#+end_src
+** Theme
+Main theme + Modeline
+#+begin_src elisp
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-gruvbox t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+#+end_src
+
+Secondary theme Poet for writing prose
+#+begin_src elisp
+(use-package poet-theme
+  :ensure t
+  :config
+  (add-hook 'text-mode-hook
+            (lambda ()
+              (variable-pitch-mode 1))))
+#+end_src
+
 ** Enable =winner-mode=
 #+begin_src elisp
 (winner-mode 1)
@@ -77,28 +130,6 @@ This section is simple bits and pieces that make emacs nicer.
 #+begin_src elisp
 (setq org-blank-before-new-entry (quote ((heading . nil)
 					 (plain-list-item . nil))))
-#+end_src
-* Font Settings
-#+begin_src elisp
-(set-face-attribute 'default nil
-		    :font "Fira Code"
-		    :height 110
-		    :weight 'medium)
-(set-face-attribute 'fixed-pitch nil
-		    :font "Fira Code"
-		    :height 110
-		    :weight 'medium)
-#+end_src
-** Zoom in/out
-#+begin_src elisp
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-#+end_src
-** All the icons font
-#+begin_src elisp
-(use-package all-the-icons
-  :ensure t)
 #+end_src
 * Snippets
 #+begin_src elisp
