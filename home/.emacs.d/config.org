@@ -30,7 +30,7 @@
 
 *** Turn on Auto Brackets
 #+begin_src elisp
- (electric-pair-mode 1) 
+(electric-pair-mode 1) 
 #+end_src
 
 ** Font Settings
@@ -111,6 +111,13 @@ Secondary theme Poet for writing prose
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
+#+end_src
+
+** Reload config
+#+begin_src elisp
+(defun my/reload-config ()
+(interactive)
+(load-file "~/.emacs.d/init.el"))
 #+end_src
 
 * Org Mode
@@ -278,7 +285,8 @@ Setup some overrides for neotree to work better with evil mode
   "g g" 'magit-status
   "g p" 'magit-dispatch
   ;; Misc.
-  "x i" 'my/reindent-whole-buffer)
+  "x i" 'my/reindent-whole-buffer
+  "x r" 'my/reload-config)
 #+end_src
 
 
