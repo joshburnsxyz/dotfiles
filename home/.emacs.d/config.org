@@ -28,6 +28,11 @@
 (defvaralias 'cperl-indent-level 'tab-width)
 #+end_src
 
+*** Turn on Auto Brackets
+#+begin_src elisp
+ (electric-pair-mode 1) 
+#+end_src
+
 ** Font Settings
 #+begin_src elisp
 (set-face-attribute 'default nil
