@@ -1,21 +1,33 @@
 * Initialization Settings
-This section is simple bits and pieces that make emacs nicer.
-** Enable line numbers
+** QoL
+*** Enable line numbers
 #+begin_src elisp
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 #+end_src
-** Disable Startup screen and GUI elements
+*** Disable Startup screen and GUI elements
 #+begin_src elisp
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 #+end_src
-** Enable copy and paste
+*** Enable copy and paste
 #+begin_src elisp
 (setq x-select-enable-clipboard t)
 #+end_src
+*** Rebind M-x
+#+begin_src elisp
+(global-set-key (kbd "M-x") 'helm-M-x)
+#+end_src
+*** Fix Indentation
+#+begin_src elisp
+(setq-default indent-tabs-mode nil)
+(setq tab-width 2)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
+#+end_src
+
 ** Font Settings
 #+begin_src elisp
 (set-face-attribute 'default nil
@@ -78,10 +90,6 @@ Secondary theme Poet for writing prose
 ** Enable =winner-mode=
 #+begin_src elisp
 (winner-mode 1)
-#+end_src
-** Rebind M-x
-#+begin_src elisp
-(global-set-key (kbd "M-x") 'helm-M-x)
 #+end_src
 * Custom Functions
 ** Open =config.org=
