@@ -120,6 +120,13 @@ Secondary theme Poet for writing prose
 (load-file "~/.emacs.d/init.el"))
 #+end_src
 
+** Open Org Directory
+#+begin_src elisp
+(defun my/open-org-directory ()
+"Open org directory in dired"
+(interactive)
+(dired org-directory))
+#+end_src
 * Org Mode
 ** Basic Org settings
 #+begin_src elisp
@@ -278,6 +285,7 @@ Setup some overrides for neotree to work better with evil mode
   "f f" 'helm-find-files
   "f d" 'helm-find
   "f c" 'my/open-config-org-file
+  "f o" 'my/open-org-directory
   ;; Neotree
   "t t" 'neotree-toggle
   "t d" 'neotree-dir
