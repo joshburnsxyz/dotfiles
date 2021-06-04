@@ -1,4 +1,5 @@
-## Test Emacs Distribution
+## My Emacs Config
 
-This folder will be an expirement building my own minimalistic emacs distribution.
-This is not intended to be compatible with doom emacs or my existing doom emacs config in this repo.
+Here is my emacs config. It is written in org-babel, so the `config.org` file essentially documents itself.
+I will continue to flesh out the prose in that document so it will eventually just take the place of this
+readme entirely.
