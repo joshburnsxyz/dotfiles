@@ -33,6 +33,12 @@
 (electric-pair-mode 1) 
 #+end_src
 
+*** Disable AutoSave / Backup Files
+#+begin_src elisp
+(setq backup-inhibited t)
+(setq auto-save-default nil)
+#+end_src
+
 ** Font Settings
 #+begin_src elisp
 (set-face-attribute 'default nil
@@ -96,6 +102,19 @@ Secondary theme Poet for writing prose
 #+begin_src elisp
 (winner-mode 1)
 #+end_src
+
+** Buffer-move
+#+begin_src elisp
+(use-package buffer-move
+  :ensure t
+  :config
+  (global-set-key (kbd "<C-S-up>")     'buf-move-up)
+  (global-set-key (kbd "<C-S-down>")   'buf-move-down)
+  (global-set-key (kbd "<C-S-left>")   'buf-move-left)
+  (global-set-key (kbd "<C-S-right>")  'buf-move-right)
+  )
+#+end_src
+
 * Custom Functions
 ** Open =config.org=
 #+begin_src elisp
@@ -116,16 +135,16 @@ Secondary theme Poet for writing prose
 ** Reload config
 #+begin_src elisp
 (defun my/reload-config ()
-(interactive)
-(load-file "~/.emacs.d/init.el"))
+  (interactive)
+  (load-file "~/.emacs.d/init.el"))
 #+end_src
 
 ** Open Org Directory
 #+begin_src elisp
 (defun my/open-org-directory ()
-"Open org directory in dired"
-(interactive)
-(dired org-directory))
+  "Open org directory in dired"
+  (interactive)
+  (dired org-directory))
 #+end_src
 * Org Mode
 ** Basic Org settings
@@ -170,6 +189,41 @@ Secondary theme Poet for writing prose
 (global-set-key (kbd "C-<tab>") 'yas-maybe-expand)
 (global-set-key (kbd "C-TAB") 'yas-maybe-expand)
 #+end_src
+* Terminal
+#+begin_src elisp
+(use-package popper
+  :ensure t
+  :bind (("C-`" . popper-toggle-latest)
+         ("M-`" . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "\\*shell\\*"
+          "Output\\*$"
+          help-mode
+          compilation-mode))
+  (popper-mode +1))
+
+(defvar th-shell-popup-buffer nil)
+(defun th-shell-popup ()
+  "Toggle a shell popup buffer with the current file's directory as cwd."
+  (interactive)
+  (unless (buffer-live-p th-shell-popup-buffer)
+    (save-window-excursion (shell "*shell*"))
+    (setq th-shell-popup-buffer (get-buffer "*shell*")))
+  (let ((win (get-buffer-window th-shell-popup-buffer))
+	(dir (file-name-directory (or (buffer-file-name)
+				      ;; dired
+				      dired-directory
+				      ;; use HOME
+				      "~/"))))
+    (if win
+	(quit-window nil win)
+      (pop-to-buffer th-shell-popup-buffer nil t)
+      (comint-send-string nil (concat "cd " dir "\n")))))
+#+end_src
+
 * Projectile
 #+begin_src elisp
 (use-package projectile
@@ -286,15 +340,14 @@ Setup some overrides for neotree to work better with evil mode
   "f d" 'helm-find
   "f c" 'my/open-config-org-file
   "f o" 'my/open-org-directory
-  ;; Neotree
+  ;; Toggle
   "t t" 'neotree-toggle
-  "t d" 'neotree-dir
+  "t o" 'th-shell-popup
   ;; Magit
   "g g" 'magit-status
   "g p" 'magit-dispatch
   ;; Misc.
   "x i" 'my/reindent-whole-buffer
-  "x r" 'my/reload-config)
+  "x r" 'my/reload-config
+  "x c" 'comment-or-uncomment-region)
 #+end_src
-
-
