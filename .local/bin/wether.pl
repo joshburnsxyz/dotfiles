@@ -1,11 +1,15 @@
 #!/usr/bin/env perl
 
+## WWW::Curl & JSON::Parse need to be installed
+## from CPAN for this script to function
+
 use strict;
 use warnings;
 use WWW::Curl::Easy;
+use JSON::Parse 'parse_json';
 
 my $curl = WWW::Curl::Easy->new;
-my $api_url = "http://localhost:3000/weather/Melbourne";
+my $api_url = "https://goweather.herokuapp.com/weather/Melbourne";
 
 $curl->setopt(CURLOPT_HEADER,1);
 $curl->setopt(CURLOPT_URL, $api_url);
