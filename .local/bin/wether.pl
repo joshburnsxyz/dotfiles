@@ -1,7 +1,10 @@
 #!/usr/bin/env perl
 
 ## WWW::Curl & JSON::Parse need to be installed
-## from CPAN for this script to function
+## from CPAN for this script to function.
+##
+## TODO: Format the JSON into a string that can 
+## be used in my DWM status bar.
 
 use strict;
 use warnings;
