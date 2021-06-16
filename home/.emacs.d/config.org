@@ -289,6 +289,17 @@ Setup some overrides for neotree to work better with evil mode
 (use-package magit
   :ensure t)
 #+end_src
+* Company Mode
+#+begin_src elisp
+(use-package company
+:ensure t)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(use-package company-box
+:ensure t
+:hook (company-mode . company-box-mode))
+#+end_src
+
 * Evil Mode
 ** Evil mode + Evil Collection
 #+begin_src elisp
