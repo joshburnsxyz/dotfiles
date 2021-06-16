@@ -1,0 +1,8 @@
+#!/bin/sh
+
+plugin=$1
+version=$2
+  
+asdf install $plugin $version \
+  && asdf global $plugin $version \
+  && asdf reshim    
