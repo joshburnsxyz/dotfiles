@@ -9,6 +9,7 @@ alias gc="git commit"
 alias gc!="git commit --amend"
 alias gst="git status"
 alias src="clear && source ~/.bashrc"
+alias cdd="cd .."
 
 # Path
 export PATH="$HOME/.emacs.d/bin:$PATH"
