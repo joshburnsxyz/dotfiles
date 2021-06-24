@@ -14,7 +14,6 @@ alias cdd="cd .."
 # Path
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.asdf/installs/rust/1.53.0/bin"
 
 # Environment
 EDITOR="emacs -nw"
