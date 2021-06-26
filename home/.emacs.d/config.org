@@ -7,10 +7,7 @@
 #+end_src
 *** Disable Startup screen and GUI elements
 #+begin_src elisp
-(setq inhibit-startup-message t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
+  (setq inhibit-startup-message t)
 #+end_src
 *** Enable copy and paste
 #+begin_src elisp
