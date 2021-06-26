@@ -6,3 +6,10 @@ config.el
 .#*
 projectile-bookmarks.eld
 /home/.emacs.d/transient/
+.config/pulse/
+nitrogen
+gtk-2.0
+.config/gtk-2.0
+.config/glib-2.0
+.local/share
+obs-studio
