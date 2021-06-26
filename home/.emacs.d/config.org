@@ -2,8 +2,7 @@
 ** QoL
 *** Enable line numbers
 #+begin_src elisp
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-line-numbers-mode)
+(setq line-number-mode t)
 #+end_src
 *** Disable Startup screen and GUI elements
 #+begin_src elisp
@@ -50,12 +49,6 @@
                     :font "Fira Code"
                     :height 110
                     :weight 'medium)
-#+end_src
-*** Zoom in/out
-#+begin_src elisp
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C--") 'text-scale-decrease)
 #+end_src
 *** All the icons font
 #+begin_src elisp
