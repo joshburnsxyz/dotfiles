@@ -335,6 +335,17 @@ Setup some overrides for neotree to work better with evil mode
 (use-package evil-tutor
   :ensure t)
 #+end_src
+** Evil Nerd Commenter
+#+begin_src elisp
+(use-package evil-nerd-commenter
+  :ensure t
+  :config
+  (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+  (global-set-key (kbd "C-c l") 'evilnc-quick-comment-or-uncomment-to-the-line)
+  (global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
+  (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs))
+#+end_src
+
 ** General.el keybindings
 #+begin_src elisp
 (use-package general
