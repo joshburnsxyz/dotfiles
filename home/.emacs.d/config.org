@@ -2,7 +2,7 @@
 ** QoL
 *** Enable line numbers
 #+begin_src elisp
-(setq line-number-mode t)
+(global-linum-mode)
 #+end_src
 *** Disable Startup screen and GUI elements
 #+begin_src elisp
@@ -58,34 +58,12 @@
 ** Theme
 Main theme + Modeline
 #+begin_src elisp
-(use-package doom-themes
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-gruvbox t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
-
+(load-theme 'tango-dark)
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
 #+end_src
 
-Secondary theme Poet for writing prose
-#+begin_src elisp
-(use-package poet-theme
-  :ensure t
-  :config
-  (add-hook 'text-mode-hook
-            (lambda ()
-              (variable-pitch-mode 1))))
 #+end_src
 
 ** Enable =winner-mode=

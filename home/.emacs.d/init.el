@@ -37,8 +37,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("26e07f80888647204145085c4fed78e0e6652901b62a25de2b8372d71de9c0a1" "0466adb5554ea3055d0353d363832446cd8be7b799c39839f387abb631ea0995" "28a104f642d09d3e5c62ce3464ea2c143b9130167282ea97ddcc3607b381823f" default))
  '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
    '(company php-mode web-mode popper buffer-move doom-themes go-mode markdown-mode yaml-mode use-package)))
