@@ -7,7 +7,7 @@
 #+end_src
 *** Disable Startup screen and GUI elements
 #+begin_src elisp
-  (setq inhibit-startup-message t)
+(setq inhibit-startup-message t)
 #+end_src
 *** Enable copy and paste
 #+begin_src elisp
@@ -110,6 +110,14 @@ Secondary theme Poet for writing prose
   (global-set-key (kbd "<C-S-left>")   'buf-move-left)
   (global-set-key (kbd "<C-S-right>")  'buf-move-right)
   )
+#+end_src
+
+** Make selection region visible in terminal
+#+begin_src elisp
+(set-face-attribute 'region nil
+                    :background "white")
+(set-face-attribute 'region nil
+                    :foreground "black")
 #+end_src
 
 * Custom Functions
@@ -228,6 +236,17 @@ Secondary theme Poet for writing prose
   :config
   (projectile-global-mode 1))
 #+end_src
+* Which key
+#+begin_src elisp
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-setup-side-window-bottom)
+  (which-key-mode))
+
+#+end_src
+
 * Helm
 #+begin_src elisp
 (use-package helm
@@ -289,12 +308,12 @@ Setup some overrides for neotree to work better with evil mode
 * Company Mode
 #+begin_src elisp
 (use-package company
-:ensure t)
+  :ensure t)
 (add-hook 'after-init-hook 'global-company-mode)
 
 (use-package company-box
-:ensure t
-:hook (company-mode . company-box-mode))
+  :ensure t
+  :hook (company-mode . company-box-mode))
 #+end_src
 
 * Evil Mode
