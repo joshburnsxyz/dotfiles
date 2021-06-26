@@ -2,6 +2,7 @@
 ** QoL
 *** Enable line numbers
 #+begin_src elisp
+(setq linum-format "%4d \u2502 ")
 (global-linum-mode)
 #+end_src
 *** Disable Startup screen and GUI elements
