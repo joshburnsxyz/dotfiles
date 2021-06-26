@@ -386,6 +386,5 @@ Setup some overrides for neotree to work better with evil mode
   "g p" 'magit-dispatch
   ;; Misc.
   "x i" 'my/reindent-whole-buffer
-  "x r" 'my/reload-config
-  "x c" 'comment-or-uncomment-region)
+  "x r" 'my/reload-config)
 #+end_src
