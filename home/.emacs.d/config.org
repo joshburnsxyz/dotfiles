@@ -127,7 +127,7 @@ Main theme + Modeline
 ** Basic Org settings
 #+begin_src elisp
 (add-hook 'org-mode-hook 'org-indent-mode)
-(setq org-directory "~/Documents/org"
+(setq org-directory "~/org"
       org-agenda-files '("~/Documents/org/agenda.org")
       org-default-notes-file (expand-file-name "notes.org" org-directory))
 (setq org-src-preserve-indentation nil
