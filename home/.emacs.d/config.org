@@ -317,7 +317,16 @@ Setup some overrides for neotree to work better with evil mode
   (global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
   (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs))
 #+end_src
-
+** Evil Multi Cursors
+#+begin_src elisp
+(use-package evil-mc
+    :ensure t
+    :config
+    (global-evil-mc 1)
+    (evil-define-key 'visual evil-mc-key-map
+        "A" #'evil-mc-make-cursor-in-visual-selection-end
+	"I" #'evil-mc-make-cursor-in-visual-selection-beg))
+#+end_src
 ** General.el keybindings
 #+begin_src elisp
 (use-package general
