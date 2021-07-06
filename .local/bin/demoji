@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cmd=$(printf "" | dmenu -p "Select Emoji:" $*)
+cmd=$(printf "😀\n🤣\n😉\n😐\n🤢\n😲\n😥\n🤬\n💩\n👋\n👌\n🤙\n🖕\n👍\n🔨" | dmenu -p "Select Emoji:" $*)
 
 if [ -z "$cmd" ]; then
 	exit 0
