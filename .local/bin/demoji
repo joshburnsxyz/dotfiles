@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cmd=$(printf "" | dmenu -p "Select Emoji:" $*)
+
+if [ -z "$cmd" ]; then
+	exit 0
+fi
+
+echo $cmd | xclip -selection c
