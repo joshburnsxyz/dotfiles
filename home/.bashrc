@@ -12,14 +12,13 @@ alias src="clear && source ~/.bashrc"
 alias cdd="cd .."
 
 # Path
-export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # PS1 prompt
 export PS1="\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;12m\]\u\[$(tput sgr0)\]\[\033[38;5;11m\]@\[$(tput sgr0)\]\[\033[38;5;12m\]\h\[$(tput sgr0)\]\[\033[38;5;11m\]]\[$(tput sgr0)\]\[\033[38;5;9m\][\[$(tput sgr0)\]\[\033[38;5;12m\]\w\[$(tput sgr0)\]\[\033[38;5;9m\]]\[$(tput sgr0)\]: "
 # Environment
-EDITOR="emacs -nw"
-VISUAL="emacs -nw"
+EDITOR="vim"
+VISUAL="vim"
 PAGER="less"
 BROWSER="firefox"
 SHELL="bash"
