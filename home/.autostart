@@ -1,6 +1,0 @@
-#!/bin/sh
-
-dunst &
-udiskie &
-workstation_layout.sh &
-nitrogen --restore &
